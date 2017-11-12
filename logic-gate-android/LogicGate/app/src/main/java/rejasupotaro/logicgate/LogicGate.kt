@@ -22,7 +22,7 @@ class LogicGate(assets: AssetManager, private val logger: (String) -> Unit = {})
         val output = FloatArray(1)
         inferenceInterface.fetch(outputName, output)
 
-        logger.invoke("DONE")
+        logger.invoke("input: [$x1, $x2] => output (probability): ${output[0]}")
 
         return if (output[0] < 0.5) 0 else 1
     }
