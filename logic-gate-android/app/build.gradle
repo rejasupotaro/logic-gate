@@ -30,7 +30,11 @@ dependencies {
     implementation "org.tensorflow:tensorflow-android:1.4.0"
     implementation "android.arch.lifecycle:extensions:1.0.0"
     implementation "android.arch.lifecycle:reactivestreams:1.0.0"
-    testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
+    androidTestImplementation "org.mockito:mockito-android:2.12.0"
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    testImplementation 'junit:junit:4.12'
 }
