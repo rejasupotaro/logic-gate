@@ -1,41 +1,52 @@
 package rejasupotaro.logicgate
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import kotlinx.android.synthetic.main.activity_main.*
+import android.arch.lifecycle.ViewModelProviders
+
+
 
 class MainActivity : AppCompatActivity() {
-    private val logicGate: LogicGate by lazy {
-        LogicGate(assets, { log ->
-            logTextView.text = "${logTextView.text}\n$log"
-            logScrollView.post {
-                logScrollView.fullScroll(View.FOCUS_DOWN)
-            }
-        })
+    private lateinit var viewModel: MainViewModel
+
+    private val onItemSelectListener = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val x1 = input1View.selectedItem.toString().toInt()
+            val x2 = input2View.selectedItem.toString().toInt()
+            viewModel.infer(x1, x2)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setupViews()
+        subscribeEvents()
     }
 
     private fun setupViews() {
-        val listener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
+        input1View.onItemSelectedListener = onItemSelectListener
+        input2View.onItemSelectedListener = onItemSelectListener
+    }
 
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val x1 = input1View.selectedItem.toString().toInt()
-                val x2 = input2View.selectedItem.toString().toInt()
-                val y = logicGate.xor(x1, x2)
-                outputTextView.text = y.toString()
-            }
-        }
+    private fun subscribeEvents() {
+        viewModel.inferredValue.observe(this, Observer { value ->
+            outputTextView.text = value.toString()
+        })
 
-        input1View.onItemSelectedListener = listener
-        input2View.onItemSelectedListener = listener
+        viewModel.log.observe(this, Observer { log ->
+            logTextView.text = "${logTextView.text}\n$log"
+            logScrollView.post {
+                logScrollView.fullScroll(View.FOCUS_DOWN)
+            }
+        })
     }
 }

@@ -10,7 +10,7 @@ class LogicGate(assets: AssetManager, private val logger: (String) -> Unit = {})
 
     init {
         for (op in inferenceInterface.graph().operations()) {
-            logger.invoke("name: ${op.name()}, type: ${op.type()}, numOutputs: ${op.numOutputs()}")
+            logger("name: ${op.name()}, type: ${op.type()}, numOutputs: ${op.numOutputs()}")
         }
     }
 
@@ -22,7 +22,7 @@ class LogicGate(assets: AssetManager, private val logger: (String) -> Unit = {})
         val output = FloatArray(1)
         inferenceInterface.fetch(outputName, output)
 
-        logger.invoke("input: [$x1, $x2] => output (probability): ${output[0]}")
+        logger("input: [$x1, $x2] => output (probability): ${output[0]}")
 
         return if (output[0] < 0.5) 0 else 1
     }
