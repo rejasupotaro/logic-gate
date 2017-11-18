@@ -1,6 +1,7 @@
 import tensorflow as tf
 
-if __name__ == '__main__':
+
+def main():
     with tf.Graph().as_default():
         # Load
         with tf.gfile.FastGFile('models/xor.pb', 'rb') as file:
@@ -19,3 +20,7 @@ if __name__ == '__main__':
         with tf.Session() as session:
             loss = session.run('loss:0', feed_dict={'input:0': [[1, 1]], 'output:0': [1]})
             print('result: {0}'.format(loss))
+
+
+if __name__ == '__main__':
+    main()

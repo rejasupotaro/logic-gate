@@ -43,7 +43,7 @@ def convert_h5_to_pb(h5_file_path):
     tf.train.write_graph(graph_def, 'models', 'xor_keras.pb.txt', as_text=True)
 
 
-if __name__ == '__main__':
+def main():
     x, y = create_dataset()
     model = create_model()
     model.fit(x, y, batch_size=4, epochs=1000)
@@ -51,3 +51,7 @@ if __name__ == '__main__':
     h5_file_path = 'models/xor_keras.h5'
     model.save(h5_file_path)
     convert_h5_to_pb(h5_file_path)
+
+
+if __name__ == '__main__':
+    main()

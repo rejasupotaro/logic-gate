@@ -1,6 +1,7 @@
 import tensorflow as tf
 
-if __name__ == '__main__':
+
+def main():
     input = [[0, 0], [0, 1], [1, 0], [1, 1]]
     output = [[0], [0], [0], [1]]
 
@@ -9,10 +10,9 @@ if __name__ == '__main__':
 
     weight = tf.Variable(tf.random_uniform([2, 1], -0.1, 1.0))
     bias = tf.Variable(tf.zeros([1]))
-    y_pred = tf.nn.relu(tf.matmul(x, weight) + bias)
+    y_pred = tf.nn.sigmoid(tf.matmul(x, weight) + bias)
 
-    cross_entropy = tf.square(y - y_pred)
-    loss = tf.reduce_mean(cross_entropy)
+    loss = tf.reduce_mean(tf.square(y - y_pred))
     optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1)
     train_step = optimizer.minimize(loss)
 
@@ -36,3 +36,7 @@ if __name__ == '__main__':
 
         for data in input:
             print("input: {} | output: {}".format(data, session.run(y_pred, feed_dict={x: [data]})))
+
+
+if __name__ == '__main__':
+    main()

@@ -1,7 +1,8 @@
 import tensorflow as tf
 from tensorflow.python.framework.graph_util import convert_variables_to_constants
 
-if __name__ == '__main__':
+
+def main():
     input = [[0, 0], [0, 1], [1, 0], [1, 1]]
     labels = [[0], [1], [1], [0]]
 
@@ -16,10 +17,9 @@ if __name__ == '__main__':
 
     w_output = tf.Variable(tf.random_uniform([HIDDEN_NODES, 1], -0.1, 1.0), name='w_output')
     b_output = tf.Variable(tf.zeros([1]), name='b_output')
-    y_pred = tf.nn.relu(tf.matmul(hidden, w_output) + b_output, name='y_pred')
+    y_pred = tf.sigmoid(tf.matmul(hidden, w_output) + b_output, name='y_pred')
 
-    cross_entropy = tf.square(y - y_pred, name='cross_entropy')
-    loss = tf.reduce_mean(cross_entropy, name='loss')
+    loss = tf.reduce_mean(tf.square(y - y_pred), name='loss')
     optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1, name='optimizer')
     train_step = optimizer.minimize(loss, name='train_step')
 
@@ -40,3 +40,7 @@ if __name__ == '__main__':
         graph_def = convert_variables_to_constants(session, session.graph_def, ['train_step'])
         tf.train.write_graph(graph_def, 'models', 'xor.pb', as_text=False)
         tf.train.write_graph(graph_def, 'models', 'xor.pb.txt', as_text=True)
+
+
+if __name__ == '__main__':
+    main()
