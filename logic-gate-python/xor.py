@@ -19,20 +19,20 @@ def main():
     b_output = tf.Variable(tf.zeros([1]), name='b_output')
     y_pred = tf.sigmoid(tf.matmul(hidden, w_output) + b_output, name='y_pred')
 
-    loss = tf.reduce_mean(tf.square(y - y_pred), name='loss')
+    loss = -tf.reduce_sum(y * tf.log(y_pred) + (1 - y) * tf.log(1 - y_pred), name='loss')
     optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1, name='optimizer')
     train_step = optimizer.minimize(loss, name='train_step')
 
     with tf.Session() as session:
         session.run(tf.global_variables_initializer())
-        for step in range(1001):
+        for epoch in range(1001):
             _, l = session.run(
                 [train_step, loss],
                 feed_dict={x: input, y: labels}
             )
 
-            if step % 100 == 0:
-                print("step: {}, loss: {}".format(step, l))
+            if epoch % 100 == 0:
+                print("epoch: {}, loss: {}".format(epoch, l))
 
         for data in input:
             print("[TEST] input: {} | output: {}".format(data, session.run(y_pred, feed_dict={x: [data]})))
