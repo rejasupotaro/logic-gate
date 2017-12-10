@@ -3,7 +3,6 @@ import tensorflow as tf
 
 def pb_to_txt(model_name):
     with tf.Graph().as_default():
-        # Load
         with tf.gfile.FastGFile('models/{}'.format(model_name), 'rb') as file:
             graph_def = tf.GraphDef()
             graph_def.ParseFromString(file.read())
