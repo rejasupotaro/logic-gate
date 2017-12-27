@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribeEvents() {
-        viewModel.inferredValue.observe(this, Observer { value ->
+        viewModel.output.observe(this, Observer { value ->
             outputTextView.text = value.toString()
         })
 

@@ -13,9 +13,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val log = MutableLiveData<String>()
 
-    val inferredValue = MutableLiveData<Int>()
+    val output = MutableLiveData<Int>()
 
     fun infer(x1: Int, x2: Int) = async(CommonPool) {
-        inferredValue.postValue(logicGate.and(x1, x2))
+        output.postValue(logicGate.and(x1, x2))
     }
 }

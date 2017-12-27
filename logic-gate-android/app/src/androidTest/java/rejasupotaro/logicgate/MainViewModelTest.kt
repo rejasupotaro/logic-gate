@@ -19,9 +19,9 @@ class MainViewModelTest {
     fun inferredValue() {
         val viewModel = MainViewModel(activityRule.activity.application)
         val observer: Observer<Int> = mock()
-        viewModel.inferredValue.observeForever(observer)
-        assert(viewModel.inferredValue.value == 0)
+        viewModel.output.observeForever(observer)
+        assert(viewModel.output.value == 0)
         viewModel.infer(1, 0)
-        assert(viewModel.inferredValue.value == 1)
+        assert(viewModel.output.value == 1)
     }
 }
