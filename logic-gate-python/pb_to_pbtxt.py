@@ -12,4 +12,4 @@ def pb_to_txt(model_name):
 
 
 if __name__ == '__main__':
-    pb_to_txt("frozen_and.pb")
+    pb_to_txt("optimized_logic_and_gate.pb")

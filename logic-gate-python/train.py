@@ -54,8 +54,8 @@ def train():
 
         # If you want to save (= freeze) variables as constants
         graph_def = convert_variables_to_constants(session, session.graph_def, ['y_pred'])
-        tf.train.write_graph(graph_def, 'models', 'frozen_and.pb', as_text=False)
-        tf.train.write_graph(graph_def, 'models', 'frozen_and.pb.txt', as_text=True)
+        tf.train.write_graph(graph_def, 'models', 'logic_and_gate.pb', as_text=False)
+        tf.train.write_graph(graph_def, 'models', 'logic_and_gate.pb.txt', as_text=True)
 
 
 if __name__ == '__main__':
