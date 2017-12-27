@@ -1,3 +1,20 @@
+# Logic AND Gate
+
+This is a revolutional model which predicts the output of logic AND gate.
+
+### Summarize
+
+```
+$ bazel build tensorflow/tools/graph_transforms:summarize_graph
+$ bazel-bin/tensorflow/tools/graph_transforms/summarize_graph --in_graph=path/to/models/frozen_and.pb
+Found 1 possible inputs: (name=x, type=float(1), shape=None)
+No variables spotted.
+Found 1 possible outputs: (name=y_pred, op=Sigmoid)
+Found 3 (3) const parameters, 0 (0) variable parameters, and 0 control_edges
+Op types used: 2 Const, 1 Add, 1 MatMul, 1 Placeholder, 1 Sigmoid
+```
+
+
 ### Optimize for inference
 
 ```
@@ -26,16 +43,4 @@ $ bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
 --in_graph=../logic-gate/logic-gate-python/models/optimized_and.pb \
 --out_graph=../logic-gate/logic-gate-python/models/quantized_and.pb \
 --transforms='quantize_weights'
-```
-
-### Summarize
-
-```
-$ bazel build tensorflow/tools/graph_transforms:summarize_graph
-$ bazel-bin/tensorflow/tools/graph_transforms/summarize_graph --in_graph=path/to/models/and.pb
-Found 1 possible inputs: (name=x, type=float(1), shape=None)
-No variables spotted.
-Found 1 possible outputs: (name=y_pred, op=Sigmoid)
-Found 3 (3) const parameters, 0 (0) variable parameters, and 0 control_edges
-Op types used: 2 Const, 1 Add, 1 MatMul, 1 Placeholder, 1 Sigmoid
 ```

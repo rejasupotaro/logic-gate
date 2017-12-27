@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow.python.framework.graph_util import convert_variables_to_constants
 
-
 def train():
     input = [[0, 0], [0, 1], [1, 0], [1, 1]]
     output = [[0], [0], [0], [1]]
@@ -11,10 +10,11 @@ def train():
 
     weight = tf.Variable(tf.zeros([2, 1]), dtype=tf.float32, name='weight')
     bias = tf.Variable(tf.zeros([1]), name='bias')
+
     y_pred = tf.nn.sigmoid(tf.matmul(x, weight) + bias, name='y_pred')
 
     with tf.name_scope("loss"):
-        loss = -tf.reduce_sum(y * tf.log(y_pred) + (1 - y) * tf.log(1 - y_pred), name='loss')
+        loss = tf.reduce_sum(tf.square(y_pred - y), name='loss')
 
     with tf.name_scope("train"):
         optimizer = tf.train.AdamOptimizer(learning_rate=0.1, name='optimizer')
