@@ -20,6 +20,8 @@ $ tensorboard --logdir=logs/raw/
 
 Then, open `http://localhost:6006`
 
+![](https://github.com/rejasupotaro/logic-gate/blob/master/images/tensorboard.png?raw=true)
+
 ### 3. See Summary
 
 ```
