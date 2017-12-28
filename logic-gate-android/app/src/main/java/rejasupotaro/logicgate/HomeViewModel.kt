@@ -8,7 +8,7 @@ import kotlinx.coroutines.experimental.async
 import rejasupotaro.logicgate.extension.sample
 import rejasupotaro.logicgate.inference.LogicGate
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val inputs = listOf(Pair(0, 1), Pair(0, 1), Pair(1, 0), Pair(1, 1))
     private val logicGate: LogicGate by lazy {
         LogicGate(application.assets, { l -> log.postValue(l) })

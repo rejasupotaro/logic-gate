@@ -12,12 +12,12 @@ import rejasupotaro.logicgate.animation.FadeOutInAnimation
 
 class MainActivity : AppCompatActivity() {
     private val handler = Handler()
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         subscribeEvents()
         next()
     }
