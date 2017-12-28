@@ -1,4 +1,4 @@
-package rejasupotaro.logicgate.anim
+package rejasupotaro.logicgate.animation
 
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation

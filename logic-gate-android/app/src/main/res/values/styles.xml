@@ -7,21 +7,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Title2">
+    <style name="Display3">
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">56sp</item>
         <item name="android:textColor">@color/text01</item>
     </style>
 
-    <style name="RegularBody">
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">18sp</item>
+    <style name="Headline">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text01</item>
+    </style>
+
+    <style name="Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text02</item>
     </style>
 
-    <style name="SmallBody">
+    <style name="Body">
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/text02</item>
     </style>
 </resources>

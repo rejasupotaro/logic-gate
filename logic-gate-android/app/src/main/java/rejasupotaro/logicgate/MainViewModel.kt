@@ -5,17 +5,23 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
+import rejasupotaro.logicgate.extension.sample
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
+    private val inputs = listOf(Pair(0, 1), Pair(0, 1), Pair(1, 0), Pair(1, 1))
     private val logicGate: LogicGate by lazy {
         LogicGate(application.assets, { l -> log.postValue(l) })
     }
 
     val log = MutableLiveData<String>()
-
+    val input = MutableLiveData<Pair<Int, Int>>()
     val output = MutableLiveData<Int>()
 
-    fun infer(x1: Int, x2: Int) = async(CommonPool) {
-        output.postValue(logicGate.and(x1, x2))
+    fun infer(input: Pair<Int, Int>) = async(CommonPool) {
+        output.postValue(logicGate.and(input.first, input.second))
+    }
+
+    fun next() {
+        input.postValue(inputs.sample())
     }
 }
