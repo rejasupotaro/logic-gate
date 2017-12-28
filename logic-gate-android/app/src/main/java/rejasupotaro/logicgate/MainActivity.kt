@@ -1,14 +1,13 @@
 package rejasupotaro.logicgate
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import kotlinx.android.synthetic.main.activity_main.*
-import android.arch.lifecycle.ViewModelProviders
-
-
+import rejasupotaro.logicgate.anim.FadeOutInAnimation
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -38,15 +37,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribeEvents() {
-        viewModel.output.observe(this, Observer { value ->
-            outputTextView.text = value.toString()
-        })
-
         viewModel.log.observe(this, Observer { log ->
             logTextView.text = "${logTextView.text}\n$log"
             logScrollView.post {
                 logScrollView.fullScroll(View.FOCUS_DOWN)
             }
+        })
+
+        viewModel.output.observe(this, Observer { value ->
+            outputTextView.startAnimation(FadeOutInAnimation({
+                outputTextView.text = value.toString()
+            }))
         })
     }
 }

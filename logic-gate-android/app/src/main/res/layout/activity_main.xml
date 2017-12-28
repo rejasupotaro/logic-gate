@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="rejasupotaro.logicgate.MainActivity">
 
     <TextView
         android:id="@+id/outputTextView"
+        style="@style/Title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="-"
         android:textSize="@dimen/text_size_large"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,7 +26,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:entries="@array/inputItems"
+        android:entries="@array/input_items"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +38,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:entries="@array/inputItems"
+        android:entries="@array/input_items"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,8 +54,9 @@
         android:id="@+id/logScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="8dp"
         android:background="#CC000000"
+        android:clipToPadding="false"
+        android:padding="8dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,6 +87,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="361dp" />
+        app:layout_constraintGuide_percent="0.84" />
 
 </android.support.constraint.ConstraintLayout>
