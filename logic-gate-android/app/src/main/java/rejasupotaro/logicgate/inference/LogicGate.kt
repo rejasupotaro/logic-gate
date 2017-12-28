@@ -1,4 +1,4 @@
-package rejasupotaro.logicgate
+package rejasupotaro.logicgate.inference
 
 import android.content.res.AssetManager
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface

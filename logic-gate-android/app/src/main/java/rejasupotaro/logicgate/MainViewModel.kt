@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import rejasupotaro.logicgate.extension.sample
+import rejasupotaro.logicgate.inference.LogicGate
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val inputs = listOf(Pair(0, 1), Pair(0, 1), Pair(1, 0), Pair(1, 1))
