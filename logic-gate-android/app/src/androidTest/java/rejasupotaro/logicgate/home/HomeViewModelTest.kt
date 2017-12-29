@@ -9,13 +9,13 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import rejasupotaro.logicgate.HomeViewModel
-import rejasupotaro.logicgate.MainActivity
+import rejasupotaro.logicgate.HomeActivity
 
 @RunWith(AndroidJUnit4::class)
 class HomeViewModelTest {
     @Rule
     @JvmField
-    var activityRule = ActivityTestRule(MainActivity::class.java)
+    var activityRule = ActivityTestRule(HomeActivity::class.java)
 
     @Test
     fun inferredValue() {

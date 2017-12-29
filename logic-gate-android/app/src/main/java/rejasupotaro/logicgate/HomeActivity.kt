@@ -10,7 +10,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import rejasupotaro.logicgate.animation.FadeOutInAnimation
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     private val handler = Handler()
     private lateinit var viewModel: HomeViewModel
 
