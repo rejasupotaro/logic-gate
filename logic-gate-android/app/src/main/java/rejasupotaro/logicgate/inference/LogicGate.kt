@@ -2,9 +2,11 @@ package rejasupotaro.logicgate.inference
 
 import android.content.res.AssetManager
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface
+import java.io.File
 
-class LogicGate(assets: AssetManager, private val logger: (String) -> Unit = {}) {
-    private val inferenceInterface = TensorFlowInferenceInterface(assets, "optimized_logic_and_gate.pb")
+class LogicGate {
+    private val logger: (String) -> Unit
+    private val inferenceInterface: TensorFlowInferenceInterface
     private val inputShape = Pair(1, 2)
     private val inputName = "x"
     private val input = FloatArray(inputShape.first * inputShape.second)
@@ -13,7 +15,19 @@ class LogicGate(assets: AssetManager, private val logger: (String) -> Unit = {})
     private val output = FloatArray(outputShape.first * outputShape.second)
     private val threshold = 0.5
 
-    init {
+    constructor(assets: AssetManager, logger: (String) -> Unit = {}) {
+        this.logger = logger
+        this.inferenceInterface = TensorFlowInferenceInterface(assets, "optimized_logic_and_gate.pb")
+        printOperations()
+    }
+
+    constructor(file: File, logger: (String) -> Unit = {}) {
+        this.logger = logger
+        this.inferenceInterface = file.inputStream().use { TensorFlowInferenceInterface(it) }
+        printOperations()
+    }
+
+    private fun printOperations() {
         for (op in inferenceInterface.graph().operations()) {
             logger("name: ${op.name()}, type: ${op.type()}, numOutputs: ${op.numOutputs()}")
         }
