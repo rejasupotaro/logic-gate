@@ -1,5 +1,6 @@
 import argparse
 import logging
+import numpy as np
 import tensorflow as tf
 from tensorflow.python.framework.graph_util import convert_variables_to_constants
 
@@ -9,16 +10,16 @@ class Trainer(object):
         self.args = args
 
     def run_training(self):
-        input = [[0, 0], [0, 1], [1, 0], [1, 1]]
-        output = [[0], [0], [0], [1]]
+        input = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+        output = np.array([[0], [0], [0], [1]])
 
         x = tf.placeholder(tf.float32, shape=[None, 2], name='x')
         y = tf.placeholder(tf.float32, shape=[None, 1], name='y')
 
-        weight = tf.Variable(tf.zeros([2, 1]), dtype=tf.float32, name='weight')
-        bias = tf.Variable(tf.zeros([1]), name='bias')
+        w = tf.Variable(tf.zeros([2, 1]), name='weight')
+        b = tf.Variable(tf.zeros([1]), name='bias')
 
-        y_pred = tf.nn.sigmoid(tf.matmul(x, weight) + bias, name='y_pred')
+        y_pred = tf.nn.sigmoid(tf.matmul(x, w) + b, name='y_pred')
 
         with tf.name_scope("loss"):
             loss = tf.reduce_sum(tf.square(y_pred - y), name='loss')
@@ -27,8 +28,8 @@ class Trainer(object):
             optimizer = tf.train.AdamOptimizer(learning_rate=0.1, name='optimizer')
             train_step = optimizer.minimize(loss, name='train_step')
 
-        tf.summary.histogram("weight", weight)
-        tf.summary.histogram("bias", bias)
+        tf.summary.histogram("weight", w)
+        tf.summary.histogram("bias", b)
         tf.summary.scalar('loss', loss)
         merged = tf.summary.merge_all()
 
@@ -45,7 +46,9 @@ class Trainer(object):
                 )
 
                 if epoch % 100 == 0:
-                    print("epoch: {}, loss: {}".format(epoch, l))
+                    print("epoch: {}, loss: {}".format(epoch, round(l, 1)))
+                    print("input: {} | output: {}".format(input[3], session.run(y_pred, feed_dict={x: [input[3]]})))
+                    print("w: {}, b: {}".format(w.eval(), b.eval()))
                     writer.add_summary(summary, epoch)
 
             for data in input:
