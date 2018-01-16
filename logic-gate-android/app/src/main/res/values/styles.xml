@@ -7,25 +7,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Display3">
+    <style name="TextAppearance.Display3" parent="TextAppearance.AppCompat.Display3">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">56sp</item>
         <item name="android:textColor">@color/text01</item>
     </style>
 
-    <style name="Headline">
+    <style name="TextApperance.Headline" parent="TextAppearance.AppCompat.Headline">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/text01</item>
     </style>
 
-    <style name="Title">
+    <style name="TextAppearance.Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text02</item>
     </style>
 
-    <style name="Body">
+    <style name="TextAppearance.Body1" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/text02</item>

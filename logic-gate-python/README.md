@@ -2,6 +2,14 @@
 
 This is a revolutional model which predicts the output of logic AND gate.
 
+| | AND Gate |
+| -- | -- |
+| input name | x |
+| input shape | (1, 2) |
+| output name | y_pred |
+| output shape | (1, 1) |
+| threshold | 0.5 |
+
 ## 1. Train Model
 
 ```

@@ -22,10 +22,10 @@
 
         <TextView
             android:id="@+id/outputTextView"
-            style="@style/Display3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-"
+            android:textAppearance="@style/TextAppearance.Display3"
             android:textSize="@dimen/text_size_large" />
 
     </FrameLayout>
@@ -55,19 +55,19 @@
 
             <TextView
                 android:id="@+id/input1TextView"
-                style="@style/Headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="0"
+                android:textAppearance="@style/TextApperance.Headline" />
         </FrameLayout>
 
         <TextView
             android:id="@+id/input1LabelTextView"
-            style="@style/Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="x_1"
+            android:textAppearance="@style/TextAppearance.Body1"
             app:layout_constraintEnd_toEndOf="@+id/input1TextViewContainer"
             app:layout_constraintStart_toStartOf="@+id/input1TextViewContainer"
             app:layout_constraintTop_toBottomOf="@+id/input1TextViewContainer" />
@@ -84,19 +84,19 @@
 
             <TextView
                 android:id="@+id/input2TextView"
-                style="@style/Headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="0"
+                android:textAppearance="@style/TextApperance.Headline" />
         </FrameLayout>
 
         <TextView
             android:id="@+id/input2LabelTextView"
-            style="@style/Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="x_2"
+            android:textAppearance="@style/TextAppearance.Body1"
             app:layout_constraintEnd_toEndOf="@+id/input2TextViewContainer"
             app:layout_constraintStart_toStartOf="@+id/input2TextViewContainer"
             app:layout_constraintTop_toBottomOf="@+id/input2TextViewContainer" />
@@ -153,60 +153,60 @@
 
     <TextView
         android:id="@+id/outputLabelTextView"
-        style="@style/Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="y_pred"
+        android:textAppearance="@style/TextAppearance.Body1"
         app:layout_constraintEnd_toEndOf="@+id/outputTextViewContainer"
         app:layout_constraintStart_toStartOf="@+id/outputTextViewContainer"
         app:layout_constraintTop_toBottomOf="@+id/outputTextViewContainer" />
 
     <TextView
         android:id="@+id/textView5"
-        style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/background_rectangle"
         android:text="MatMul"
+        android:textAppearance="@style/TextAppearance.Title"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView6"
-        style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/background_rectangle"
         android:text="Add"
+        android:textAppearance="@style/TextAppearance.Title"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/textView7"
-        style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="@drawable/background_rectangle"
         android:text="weight"
+        android:textAppearance="@style/TextAppearance.Title"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView8"
-        style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="@drawable/background_rectangle"
         android:text="bias"
+        android:textAppearance="@style/TextAppearance.Title"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
