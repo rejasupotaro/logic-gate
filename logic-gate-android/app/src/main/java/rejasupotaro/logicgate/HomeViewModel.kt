@@ -6,12 +6,13 @@ import android.arch.lifecycle.MutableLiveData
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import rejasupotaro.logicgate.extension.sample
-import rejasupotaro.logicgate.inference.LogicGate
+import rejasupotaro.logicgate.inference.InferenceInterface
+import rejasupotaro.logicgate.inference.LogicGateLite
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val inputs = listOf(Pair(0, 1), Pair(0, 1), Pair(1, 0), Pair(1, 1))
-    private val logicGate: LogicGate by lazy {
-        LogicGate(application.assets, { l -> log.postValue(l) })
+    private val logicGate: InferenceInterface by lazy {
+        LogicGateLite(application.assets, { l -> log.postValue(l) })
     }
 
     val log = MutableLiveData<String>()

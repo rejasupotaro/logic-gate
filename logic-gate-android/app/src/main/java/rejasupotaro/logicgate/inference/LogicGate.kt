@@ -4,7 +4,7 @@ import android.content.res.AssetManager
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface
 import java.io.File
 
-class LogicGate {
+class LogicGate : InferenceInterface {
     private val logger: (String) -> Unit
     private val inferenceInterface: TensorFlowInferenceInterface
     private val inputShape = Pair(1, 2)
@@ -33,7 +33,7 @@ class LogicGate {
         }
     }
 
-    fun and(x1: Int, x2: Int): Int {
+    override fun and(x1: Int, x2: Int): Int {
         input[0] = x1.toFloat()
         input[1] = x2.toFloat()
 
