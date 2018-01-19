@@ -20,6 +20,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    aaptOptions {
+        noCompress "tflite"
+    }
 }
 
 dependencies {
@@ -28,6 +31,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation "org.tensorflow:tensorflow-android:1.4.0"
+    implementation "org.tensorflow:tensorflow-lite:0.1.1"
     implementation "android.arch.lifecycle:extensions:1.0.0"
     implementation "android.arch.lifecycle:reactivestreams:1.0.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18"
