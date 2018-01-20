@@ -1,4 +1,4 @@
-package rejasupotaro.logicgate
+package rejasupotaro.logicgate.presentation.home
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
+import rejasupotaro.logicgate.R
 import rejasupotaro.logicgate.animation.FadeOutInAnimation
 
 class HomeActivity : AppCompatActivity() {

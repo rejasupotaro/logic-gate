@@ -1,4 +1,4 @@
-package rejasupotaro.logicgate
+package rejasupotaro.logicgate.presentation.home
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
@@ -12,7 +12,7 @@ import rejasupotaro.logicgate.inference.LogicGateLite
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val inputs = listOf(Pair(0, 1), Pair(0, 1), Pair(1, 0), Pair(1, 1))
     private val logicGate: InferenceInterface by lazy {
-        LogicGateLite(application.assets, { l -> log.postValue(l) })
+        LogicGateLite(application.assets, { log.postValue(it) })
     }
 
     val log = MutableLiveData<String>()

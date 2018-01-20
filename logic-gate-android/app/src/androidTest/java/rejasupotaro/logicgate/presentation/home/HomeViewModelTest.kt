@@ -1,4 +1,4 @@
-package rejasupotaro.logicgate.home
+package rejasupotaro.logicgate.presentation.home
 
 import android.arch.lifecycle.Observer
 import android.support.test.rule.ActivityTestRule
@@ -8,8 +8,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import rejasupotaro.logicgate.HomeViewModel
-import rejasupotaro.logicgate.HomeActivity
 
 @RunWith(AndroidJUnit4::class)
 class HomeViewModelTest {

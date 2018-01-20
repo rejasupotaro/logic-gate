@@ -8,14 +8,10 @@ import java.nio.channels.FileChannel
 
 class LogicGateLite(assets: AssetManager, private val logger: (String) -> Unit = {}) : InferenceInterface {
     private val modelName = "optimized_logic_and_gate.tflite"
-    private val interpreter: Interpreter
+    private val interpreter by lazy { Interpreter(loadModelFile(assets)) }
     private val input = Array(1) { FloatArray(2) }
     private val output = Array(1) { FloatArray(1) }
     private val threshold = 0.5
-
-    init {
-        interpreter = Interpreter(loadModelFile(assets))
-    }
 
     private fun loadModelFile(assetManager: AssetManager): MappedByteBuffer {
         val fileDescriptor = assetManager.openFd(modelName)

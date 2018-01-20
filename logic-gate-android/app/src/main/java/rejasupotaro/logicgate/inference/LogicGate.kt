@@ -5,6 +5,7 @@ import org.tensorflow.contrib.android.TensorFlowInferenceInterface
 import java.io.File
 
 class LogicGate : InferenceInterface {
+    private val modelName = "optimized_logic_and_gate.pb"
     private val logger: (String) -> Unit
     private val inferenceInterface: TensorFlowInferenceInterface
     private val inputShape = Pair(1, 2)
@@ -17,7 +18,7 @@ class LogicGate : InferenceInterface {
 
     constructor(assets: AssetManager, logger: (String) -> Unit = {}) {
         this.logger = logger
-        this.inferenceInterface = TensorFlowInferenceInterface(assets, "optimized_logic_and_gate.pb")
+        this.inferenceInterface = TensorFlowInferenceInterface(assets, modelName)
         printOperations()
     }
 
