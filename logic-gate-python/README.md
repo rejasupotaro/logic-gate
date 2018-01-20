@@ -206,3 +206,7 @@ $ bazel-bin/tensorflow/contrib/lite/toco/toco \
     --output_arrays=y_pred \
     --input_shapes=1,2
 ```
+
+> Note: Currently, the AAR used in this demo is not compatible with the Android Emulator, and you must use a real android device to run the app.
+
+_[TensorFlow for Poets 2: TFLite](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets-2-tflite/index.html)_
