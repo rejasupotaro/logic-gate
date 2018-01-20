@@ -30,7 +30,7 @@ $ tensorboard --logdir=../logic-gate/logic-gate-python/logs/raw/
 
 Then, open `http://localhost:6006`
 
-![](https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_1.png?raw=true)
+<img src="https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_1.png?raw=true" width="360">
 
 ### 3. See Summary
 
@@ -189,7 +189,7 @@ $ tensorboard --logdir=../logic-gate/logic-gate-python/logs/optimized/
 
 Then, open `http://localhost:6006`
 
-![](https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_2.png?raw=true)
+<img src="https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_2.png?raw=true" width="360">
 
 ## 7. Optimize Graph for TensorFlow Lite
 
