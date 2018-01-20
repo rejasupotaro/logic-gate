@@ -28,7 +28,7 @@ $ tensorboard --logdir=logs/raw/
 
 Then, open `http://localhost:6006`
 
-![](https://github.com/rejasupotaro/logic-gate/blob/master/images/tensorboard.png?raw=true)
+![](https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_1.png?raw=true)
 
 ### 3. See Summary
 
@@ -175,3 +175,15 @@ $ bazel-bin/tensorflow/tools/quantization/quantize_graph \
 --mode=eightbit \
 --logtostderr
 ```
+
+## 6. See Optimized Graph on TensorBoard
+
+```
+$ bazel build tensorflow/python/tools:import_pb_to_tensorboard
+$ bazel-bin/tensorflow/python/tools/import_pb_to_tensorboard --model_dir=path/to/models/optimized_logic_and_gate.pb --log_dir=path/to/logs/optimized/
+$ tensorboard --logdir=logs/optimized/
+```
+
+Then, open `http://localhost:6006`
+
+![](https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_2.png?raw=true)
