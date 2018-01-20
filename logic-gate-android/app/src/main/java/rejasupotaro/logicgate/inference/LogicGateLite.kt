@@ -7,7 +7,7 @@ import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 
 class LogicGateLite(assets: AssetManager, private val logger: (String) -> Unit = {}) : InferenceInterface {
-    private val modelName = "logic_and_gate.tflite"
+    private val modelName = "optimized_logic_and_gate.tflite"
     private val interpreter: Interpreter
     private val input: FloatArray = FloatArray(2)
     private val output: FloatArray = FloatArray(1)

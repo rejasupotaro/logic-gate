@@ -22,8 +22,10 @@ It generates `logic_and_gate.pb` and `logic_and_gate.pb.txt` under models direct
 
 ```
 $ bazel build tensorflow/python/tools:import_pb_to_tensorboard
-$ bazel-bin/tensorflow/python/tools/import_pb_to_tensorboard --model_dir=path/to/models/logic_and_gate.pb --log_dir=path/to/logs/raw/
-$ tensorboard --logdir=logs/raw/
+$ bazel-bin/tensorflow/python/tools/import_pb_to_tensorboard \
+    --model_dir=../logic-gate/logic-gate-python/models/logic_and_gate.pb \
+    --log_dir=../logic-gate/logic-gate-python/logs/raw/
+$ tensorboard --logdir=../logic-gate/logic-gate-python/logs/raw/
 ```
 
 Then, open `http://localhost:6006`
@@ -34,7 +36,8 @@ Then, open `http://localhost:6006`
 
 ```
 $ bazel build tensorflow/tools/graph_transforms:summarize_graph
-$ bazel-bin/tensorflow/tools/graph_transforms/summarize_graph --in_graph=path/to/models/logic_and_gate.pb                                                                                  (15s 98ms)
+$ bazel-bin/tensorflow/tools/graph_transforms/summarize_graph \
+    --in_graph=../logic-gate/logic-gate-python/models/logic_and_gate.pb
 Found 1 possible inputs: (name=x, type=float(1), shape=[?,2])
 No variables spotted.
 Found 1 possible outputs: (name=y_pred, op=Sigmoid)
@@ -138,19 +141,17 @@ $ bazel-bin/tensorflow/tools/benchmark/benchmark_model \
 ```
 $ bazel build tensorflow/tools/graph_transforms:transform_graph
 $ bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
---in_graph=../logic-gate/logic-gate-python/models/logic_and_gate.pb \
---out_graph=../logic-gate/logic-gate-python/models/optimized_logic_and_gate.pb \
---inputs='x' \
---outputs='y_pred' \
---transforms='
-strip_unused_nodes(type=float, shape="1,2")
-remove_nodes(op=Identity, op=CheckNumerics)
-fold_constants(ignore_errors=true)
-fold_batch_norms
-fold_old_batch_norms
-quantize_weights
-sort_by_execution_order
-'
+    --in_graph=../logic-gate/logic-gate-python/models/logic_and_gate.pb \
+    --out_graph=../logic-gate/logic-gate-python/models/optimized_logic_and_gate.pb \
+    --inputs='x' \
+    --outputs='y_pred' \
+    --transforms='strip_unused_nodes(type=float, shape="1,2")
+                  remove_nodes(op=Identity, op=CheckNumerics)
+                  fold_constants(ignore_errors=true)
+                  fold_batch_norms
+                  fold_old_batch_norms
+                  quantize_weights
+                  sort_by_execution_order'
 ```
 
 ### Use `tensorflow/python/tools`
@@ -158,32 +159,50 @@ sort_by_execution_order
 ```
 $ bazel build tensorflow/python/tools:optimize_for_inference
 $ bazel-bin/tensorflow/python/tools/optimize_for_inference \
---input=path/to/models/and.pb \
---output=path/to/models/optimized_and.pb \
---frozen_graph=True \
---input_names=x \
---output_names=y_pred
+    --input=../logic-gate/logic-gate-python/models/and.pb \
+    --output=../logic-gate/logic-gate-python/models/optimized_and.pb \
+    --frozen_graph=True \
+    --input_names=x \
+    --output_names=y_pred
 ```
 
 ```
 $ bazel build tensorflow/tools/quantization:quantize_graph
 $ bazel-bin/tensorflow/tools/quantization/quantize_graph \
---input=../logic-gate/logic-gate-python/models/logic_and_gate.pb \
---output_node_names="y_pred" \
---print_nodes \
---output=../logic-gate/logic-gate-python/models/optimized_logic_and_gate.pb \
---mode=eightbit \
---logtostderr
+    --input=../logic-gate/logic-gate-python/models/logic_and_gate.pb \
+    --output_node_names="y_pred" \
+    --print_nodes \
+    --output=../logic-gate/logic-gate-python/models/optimized_logic_and_gate.pb \
+    --mode=eightbit \
+    --logtostderr
 ```
 
 ## 6. See Optimized Graph on TensorBoard
 
 ```
 $ bazel build tensorflow/python/tools:import_pb_to_tensorboard
-$ bazel-bin/tensorflow/python/tools/import_pb_to_tensorboard --model_dir=path/to/models/optimized_logic_and_gate.pb --log_dir=path/to/logs/optimized/
-$ tensorboard --logdir=logs/optimized/
+$ bazel-bin/tensorflow/python/tools/import_pb_to_tensorboard \
+    --model_dir=../logic-gate/logic-gate-python/models/optimized_logic_and_gate.pb \
+    --log_dir=../logic-gate/logic-gate-python/logs/optimized/
+$ tensorboard --logdir=../logic-gate/logic-gate-python/logs/optimized/
 ```
 
 Then, open `http://localhost:6006`
 
 ![](https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_2.png?raw=true)
+
+## 7. Optimize Graph for TensorFlow Lite
+
+```
+$ bazel build tensorflow/contrib/lite/toco:toco
+$ bazel-bin/tensorflow/contrib/lite/toco/toco \
+    --input_file=../logic-gate/logic-gate-python/models/optimized_logic_and_gate.pb \
+    --input_format=TENSORFLOW_GRAPHDEF \
+    --output_format=TFLITE \
+    --output_file=../logic-gate/logic-gate-python/models/optimized_logic_and_gate.tflite \
+    --inference_type=FLOAT \
+    --input_type_type=FLOAT \
+    --input_arrays=x \
+    --output_arrays=y_pred \
+    --input_shapes=1,2
+```
