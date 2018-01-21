@@ -1,6 +1,6 @@
 # Logic AND Gate
 
-This is a revolutional model which predicts the output of logic AND gate.
+This is a model which predicts the output of AND gate.
 
 | | AND Gate |
 | -- | -- |
@@ -12,14 +12,18 @@ This is a revolutional model which predicts the output of logic AND gate.
 
 ## 1. Train Model
 
+Train a model with inputs `[[0, 0], [0, 1], [1, 0], [1, 1]]` and outputs `[[0], [0], [0], [1]]`.
+
 ```
 $ pip install --upgrade -r requirements.txt
 $ python -m trainer.task
 ```
 
-It generates `logic_and_gate.pb` and `logic_and_gate.pb.txt` under models directory.
+Generated models are saved in `models` directory by default.
 
 ## 2. See Graph on TensorBoard
+
+You can see visualized graph using [TensorBoard](https://www.tensorflow.org/get_started/graph_viz).
 
 ```
 $ bazel build tensorflow/python/tools:import_pb_to_tensorboard
@@ -31,9 +35,12 @@ $ tensorboard --logdir=../logic-gate/logic-gate-python/logs/raw/
 
 Then, open `http://localhost:6006`
 
-<img src="https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_1.png?raw=true" width="360">
+<img src="https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_1.png?raw=true" width="420">
 
 ### 3. See Summary
+
+`summarize_graph` is one of [Graph Transform Tools](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/graph_transforms/README.md) to inspect a model to know what the input and output layers of the model are.
+
 
 ```
 $ bazel build tensorflow/tools/graph_transforms:summarize_graph
@@ -46,7 +53,11 @@ Found 3 (3) const parameters, 0 (0) variable parameters, and 0 control_edges
 Op types used: 2 Const, 2 Identity, 1 Add, 1 MatMul, 1 Placeholder, 1 Sigmoid
 ```
 
+You can also see what nodes and operators are included.
+
 ### 4. Benchmark
+
+[TensorFlow Model Benchmark Tool](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/benchmark/README.md) is a tool to benchmark a computation graph and its individual operators.
 
 ```
 $ bazel build tensorflow/tools/benchmark/benchmark_model
@@ -62,6 +73,8 @@ $ bazel-bin/tensorflow/tools/benchmark/benchmark_model \
 --show_summary=true \
 --show_flops=true
 ```
+
+You can estimate the computational cost before running it on mobile.
 
 <details>
 
@@ -137,7 +150,11 @@ $ bazel-bin/tensorflow/tools/benchmark/benchmark_model \
 
 ## 5. Optimize Graph
 
+There are 2 ways to optimize a computation graph.
+
 ### Use `tensorflow/tools`
+
+This is a way to optimize a computation graph using Graph Transform Tool described above.
 
 ```
 $ bazel build tensorflow/tools/graph_transforms:transform_graph
@@ -156,6 +173,8 @@ $ bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
 ```
 
 ### Use `tensorflow/python/tools`
+
+The other ways is using python tools.
 
 ```
 $ bazel build tensorflow/python/tools:optimize_for_inference
@@ -178,7 +197,11 @@ $ bazel-bin/tensorflow/tools/quantization/quantize_graph \
     --logtostderr
 ```
 
+You can call the methods directly from your Python code since it's written in Python.
+
 ## 6. See Optimized Graph on TensorBoard
+
+Let's see the difference between before and after.
 
 ```
 $ bazel build tensorflow/python/tools:import_pb_to_tensorboard
@@ -190,9 +213,13 @@ $ tensorboard --logdir=../logic-gate/logic-gate-python/logs/optimized/
 
 Then, open `http://localhost:6006`
 
-<img src="https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_2.png?raw=true" width="360">
+<img src="https://github.com/rejasupotaro/logic-gate/blob/master/images/logic_gate_graph_2.png?raw=true" width="420">
+
+You can see that unnecessary nodes are removed.
 
 ## 7. Optimize Graph for TensorFlow Lite
+
+If you want to run your model on [TensorFlow Lite](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/README.md), you need to convert your model using toco.
 
 ```
 $ bazel build tensorflow/contrib/lite/toco:toco
