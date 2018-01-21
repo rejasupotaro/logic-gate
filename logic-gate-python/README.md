@@ -13,7 +13,8 @@ This is a revolutional model which predicts the output of logic AND gate.
 ## 1. Train Model
 
 ```
-$ python train.py
+$ pip install --upgrade -r requirements.txt
+$ python -m trainer.task
 ```
 
 It generates `logic_and_gate.pb` and `logic_and_gate.pb.txt` under models directory.
