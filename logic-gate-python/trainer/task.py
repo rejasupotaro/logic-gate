@@ -35,7 +35,7 @@ class Trainer(object):
 
         with tf.Session() as session:
             session.run(tf.global_variables_initializer())
-            writer = tf.summary.FileWriter(self.args.output_path + 'logs/raw', session.graph)
+            writer = tf.summary.FileWriter(self.args.log_dir + 'raw', session.graph)
 
             for epoch in range(self.args.epochs):
                 _, summary, l = session.run(
@@ -62,12 +62,12 @@ class Trainer(object):
             # tf.train.write_graph(graph_def, 'models', 'and.pb', as_text=False)
             # tf.train.write_graph(graph_def, 'models', 'and.pb.txt', as_text=True)
 
-            if self.args.output_format == 'pb':
+            if self.args.model_format == 'pb':
                 as_text = False
             else:
                 as_text = True
             graph_def = convert_variables_to_constants(session, session.graph_def, ['y_pred'])
-            tf.train.write_graph(graph_def, self.args.output_path + 'models', 'logic_and_gate.pb', as_text=as_text)
+            tf.train.write_graph(graph_def, self.args.model_dir, 'logic_and_gate.pb', as_text=as_text)
 
 
 def main(_):
@@ -78,12 +78,17 @@ def main(_):
         default=1001
     )
     parser.add_argument(
-        '--output_path',
+        '--log_dir',
         type=str,
-        default='../'
+        default='logs/'
     )
     parser.add_argument(
-        '--output_format',
+        '--model_dir',
+        type=str,
+        default='models/'
+    )
+    parser.add_argument(
+        '--model_format',
         type=str,
         default='pb'
     )
