@@ -62,16 +62,16 @@ You can also see what nodes and operators are included.
 ```
 $ bazel build tensorflow/tools/benchmark/benchmark_model
 $ bazel-bin/tensorflow/tools/benchmark/benchmark_model \
---graph=../logic-gate/logic-gate-python/models/logic_and_gate.pb \
---input_layer="x" \
---input_layer_shape="1,2" \
---input_layer_type="float" \
---output_layer="y_pred" \
---show_run_order=false \
---show_time=true \
---show_memory=true \
---show_summary=true \
---show_flops=true
+    --graph=../logic-gate/logic-gate-python/models/logic_and_gate.pb \
+    --input_layer="x" \
+    --input_layer_shape="1,2" \
+    --input_layer_type="float" \
+    --output_layer="y_pred" \
+    --show_run_order=false \
+    --show_time=true \
+    --show_memory=true \
+    --show_summary=true \
+    --show_flops=true
 ```
 
 You can estimate the computational cost before running it on mobile.

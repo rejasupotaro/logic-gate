@@ -30,12 +30,16 @@ See `LogicGateLite` class.
 
 ## Library Size (Raw File Size)
 
+<img src="https://gist.github.com/rejasupotaro/9ee87744261b5e00bdf520fcbfe2ee2e/raw/91bb7f400dbbe1d46a34bf053541dcc38d5c5ffe/apk_profile_logic_gate.png" width="420">
+
 | | TensorFlow Mobile | TensorFlow Lite |
 | -- | -- | -- |
 | x86_64 | 4.8 MB | 432.7 KB |
 | x86 | 4.6 MB | 378.8 KB |
 | arm64-v8a | 4.2 MB | 374.7 KB |
 | armeabi-v7a | 3.6 MB | 326.5 KB |
+
+TensorFlow Lite is 92% smaller than TensorFlow Mobile
 
 _as of 2018/01/21_
 
