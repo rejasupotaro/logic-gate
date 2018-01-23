@@ -7,12 +7,12 @@ import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import rejasupotaro.logicgate.extension.sample
 import rejasupotaro.logicgate.inference.InferenceInterface
-import rejasupotaro.logicgate.inference.LogicGateLite
+import rejasupotaro.logicgate.inference.LogicGate
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val inputs = listOf(Pair(0, 1), Pair(0, 1), Pair(1, 0), Pair(1, 1))
     private val logicGate: InferenceInterface by lazy {
-        LogicGateLite(application.assets, { log.postValue(it) })
+        LogicGate(application.assets, { log.postValue(it) })
     }
 
     val log = MutableLiveData<String>()
