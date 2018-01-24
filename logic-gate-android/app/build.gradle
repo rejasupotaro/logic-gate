@@ -1,25 +1,26 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion versions.compileSdk
+
     defaultConfig {
         applicationId "rejasupotaro.logicgate"
-        minSdkVersion 21
-        targetSdkVersion 26
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     aaptOptions {
         noCompress "tflite"
     }
@@ -29,20 +30,20 @@ dependencies {
     implementation project(':common')
     implementation project(':styles')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation "org.tensorflow:tensorflow-android:1.4.0"
-    implementation "org.tensorflow:tensorflow-lite:0.1.1"
-    implementation "android.arch.lifecycle:extensions:1.0.0"
-    implementation "android.arch.lifecycle:reactivestreams:1.0.0"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.18"
+    implementation depends.kotlin.stdlib
+    implementation depends.kotlinx.coroutinesCore
+    implementation depends.kotlinx.coroutinesAndroid
+    implementation depends.tensorflow.mobile
+    implementation depends.tensorflow.lite
+    implementation depends.support.appcompat
+    implementation depends.support.constraintLayout
+    implementation depends.lifecycle.extensions
+    implementation depends.lifecycle.reactivestreams
 
-    androidTestImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
-    androidTestImplementation "org.mockito:mockito-android:2.12.0"
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation depends.support.test.runner
+    androidTestImplementation depends.support.test.espresso
+    androidTestImplementation depends.mockito.kotlin
+    androidTestImplementation depends.mockito.android
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation depends.junit
 }

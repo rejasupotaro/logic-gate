@@ -1,0 +1,41 @@
+ext {
+    versions = [
+            buildTools: "3.0.1",
+            kotlin    : "1.2.21",
+            compileSdk: 26,
+            minSdk    : 21,
+            targetSdk : 26
+    ]
+
+    depends = [
+            kotlin    : [
+                    stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jre7:${versions.kotlin}"
+            ],
+            kotlinx   : [
+                    coroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18",
+                    coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.18"
+            ],
+            tensorflow: [
+                    mobile: "org.tensorflow:tensorflow-android:1.4.0",
+                    lite  : "org.tensorflow:tensorflow-lite:0.1.1"
+            ],
+            support   : [
+                    appcompat       : "com.android.support:appcompat-v7:26.1.0",
+                    constraintLayout: "com.android.support.constraint:constraint-layout:1.0.2",
+                    test            : [
+                            runner  : "com.android.support.test:runner:1.0.1",
+                            espresso: "com.android.support.test.espresso:espresso-core:3.0.1"
+                    ]
+            ],
+            lifecycle : [
+                    extensions     : "android.arch.lifecycle:extensions:1.0.0",
+                    reactivestreams: "android.arch.lifecycle:reactivestreams:1.0.0"
+            ],
+            mockito   : [
+                    android: "org.mockito:mockito-android:2.12.0",
+                    kotlin : "com.nhaarman:mockito-kotlin:1.5.0"
+            ],
+            junit     : "junit:junit:4.12"
+
+    ]
+}
