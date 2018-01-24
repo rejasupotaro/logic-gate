@@ -1,4 +1,4 @@
-package rejasupotaro.logicgate.extension
+package rejasupotaro.common.extension
 
 import java.util.*
 

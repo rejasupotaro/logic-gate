@@ -9,8 +9,8 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import rejasupotaro.logicgate.R
 import rejasupotaro.logicgate.animation.FadeOutInAnimation
-import rejasupotaro.logicgate.extension.observe
-import rejasupotaro.logicgate.extension.observeNonNull
+import rejasupotaro.common.extension.observe
+import rejasupotaro.common.extension.observeNonNull
 
 class HomeActivity : AppCompatActivity() {
     private val handler = Handler()

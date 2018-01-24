@@ -1,4 +1,4 @@
-package rejasupotaro.logicgate.extension
+package rejasupotaro.common.extension
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData

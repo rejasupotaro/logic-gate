@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
-import rejasupotaro.logicgate.extension.sample
+import rejasupotaro.common.extension.sample
 import rejasupotaro.logicgate.inference.InferenceInterface
 import rejasupotaro.logicgate.inference.LogicGate
 
