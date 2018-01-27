@@ -26,6 +26,12 @@ android {
     }
 }
 
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
+
 dependencies {
     implementation project(':common')
     implementation project(':styles')
