@@ -12,8 +12,8 @@ ext {
                     stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jre7:${versions.kotlin}"
             ],
             kotlinx   : [
-                    coroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18",
-                    coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.18"
+                    coroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21",
+                    coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.21"
             ],
             tensorflow: [
                     mobile: "org.tensorflow:tensorflow-android:1.4.0",
