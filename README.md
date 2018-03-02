@@ -4,8 +4,8 @@ This repo shows how to train a model using TensorFlow and how to run it on Andro
 
 <img src="https://github.com/rejasupotaro/logic-gate/blob/master/images/example.gif?raw=true" width="480">
 
+- [Machine Learning on Mobile – Source Diving](https://sourcediving.com/machine-learning-on-mobile-fc34be69df1a)
 - [ML on Mobile DroidKaigi 2018 // Speaker Deck](https://speakerdeck.com/rejasupotaro/ml-on-mobile-droidkaigi-2018)
-- Blog post (Not yet)
 
 There are 2 sections.
 
